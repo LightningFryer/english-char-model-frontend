@@ -47,3 +47,40 @@ async function submitImage() {
   }
 }
 </script>
+
+<template>
+  <div class="container">
+    <h1>Image Classifier</h1>
+
+    <input type="file" accept="image/*" @change="handleFileChange" />
+    <button :disabled="!selectedFile" @click="submitImage">Predict</button>
+
+    <div v-if="prediction !== null">
+      <h2>Prediction: {{ prediction }}</h2>
+    </div>
+
+    <div v-if="loading">
+      <h2>Loading...</h2>
+    </div>
+
+    <div v-if="imagePreview">
+      <img
+        :src="imagePreview"
+        alt="Preview"
+        style="max-width: 300px; margin-top: 1rem"
+      />
+    </div>
+  </div>
+</template>
+
+<style>
+.container {
+  text-align: center;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+}
+</style>
